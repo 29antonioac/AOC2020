@@ -15,7 +15,7 @@ def download_input(url: str) -> List[int]:
     number_list = [int(s) for s in r.text.split("\n")]
     return number_list
 
-def read_input(filename: str) -> List[int]:
+def parse_input(filename: str) -> List[int]:
     with open(filename, "r") as f:
         number_list = [int(s) for s in f.read().split("\n") if s]
     return number_list
@@ -33,7 +33,7 @@ def exercise_two(number_list: List[int]) -> int:
     return np_list[np.unique(indexes)].prod()
 
 example_list = [1721,979,366,299,675,1456]
-number_list = read_input(INPUT_FILENAME)
+number_list = parse_input(INPUT_FILENAME)
 
 start = timer()
 result_one = exercise_one(number_list)
