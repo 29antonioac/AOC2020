@@ -22,14 +22,12 @@ def read_input(filename: str) -> List[int]:
 # We need to get the product of the two numbers whose sum is 2020
 def exercise_one(number_list: List[int]) -> int:
     np_list = np.array(number_list)
-    # indexes, = np.where(np.in1d(2020 - np_list, np_list))
     indexes, _ = np.where((np_list + np_list[:, np.newaxis]) == 2020)
     return np_list[indexes].prod()
 
-# We need to get the product of the two numbers whose sum is 2020
+# We need to get the product of the three numbers whose sum is 2020
 def exercise_two(number_list: List[int]) -> int:
     np_list = np.array(number_list)
-    # indexes, = np.where(np.in1d(2020 - np_list, np_list))
     indexes, _, _ = np.where(((np_list + np_list[:, np.newaxis]) + np_list[:, np.newaxis][:,np.newaxis]) == 2020)
     return np_list[np.unique(indexes)].prod()
 
