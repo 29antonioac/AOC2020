@@ -6,14 +6,7 @@ import numpy as np
 from timeit import default_timer as timer
 from typing import List
 
-INPUT_URL = "https://adventofcode.com/2020/day/1/input"
 INPUT_FILENAME = "input.txt"
-
-# This doesn't work since it needs to be logged in
-def download_input(url: str) -> List[int]:
-    r = requests.get(url)
-    number_list = [int(s) for s in r.text.split("\n")]
-    return number_list
 
 def parse_input(filename: str) -> List[int]:
     with open(filename, "r") as f:
