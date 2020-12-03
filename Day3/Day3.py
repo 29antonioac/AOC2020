@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os
+import sys
 import abc
 import math
 import requests
@@ -9,6 +10,9 @@ import itertools
 from timeit import default_timer as timer
 from typing import List, Tuple
 from collections import Counter
+
+sys.path.append("..")
+from utils import download_input
 
 INPUT_URL = "https://adventofcode.com/2020/day/3/input"
 INPUT_FILENAME = "input.txt"
@@ -25,16 +29,6 @@ class TravelMap(object):
     def check(self, row: int, col: int) -> bool:
         return self.map[row][col]
 
-def download_input(url: str, filename: str) -> bool:
-    try:
-        r = requests.get(url, cookies=cookie)
-        with open(filename, "w") as f:
-            f.write(r.text)
-    except:
-        print(f"Something happened")
-        return False
-    return True
-
 def parse_input(filename: str) -> TravelMap:
     with open(filename, "r") as f:
         travelmap = [[(True if s == "#" else False) for s in list(line)] for line in f]
@@ -42,7 +36,7 @@ def parse_input(filename: str) -> TravelMap:
 
 
 if not os.path.exists(INPUT_FILENAME):
-    success = download_input(INPUT_URL, INPUT_FILENAME)
+    success = download_input(INPUT_URL, INPUT_FILENAME, cookie)
     if not success: # This should be handled better
         exit(-1)
 
