@@ -31,7 +31,7 @@ class TravelMap(object):
 
 def parse_input(filename: str) -> TravelMap:
     with open(filename, "r") as f:
-        travelmap = [[(True if s == "#" else False) for s in list(line)] for line in f]
+        travelmap = [[(True if s == "#" else False) for s in list(line.strip())] for line in f]
     return TravelMap(travelmap)
 
 
@@ -45,7 +45,7 @@ map_shape = travelmap.shape()
 
 # Part one: single slope
 slope = (1, 3)
-coordinates_generator = ((y, x % (map_shape[1] - 1)) for y, x in zip(range(0, travelmap.shape()[0], slope[0]), itertools.count(step=slope[1])) )
+coordinates_generator = ((y, x % map_shape[1]) for y, x in zip(range(0, travelmap.shape()[0], slope[0]), itertools.count(step=slope[1])) )
 
 is_tree = [travelmap.check(row, col) for row, col in coordinates_generator]
 n_trees = sum(is_tree)
@@ -55,7 +55,7 @@ print(f"Number of trees: {n_trees}")
 slopes = [(1, 1), (1, 3), (1, 5), (1, 7), (2, 1)]
 total_n_trees = []
 for slope in slopes:
-    coordinates_generator = ((y, x % (map_shape[1] - 1)) for y, x in zip(range(0, travelmap.shape()[0], slope[0]), itertools.count(step=slope[1])) )
+    coordinates_generator = ((y, x % map_shape[1]) for y, x in zip(range(0, travelmap.shape()[0], slope[0]), itertools.count(step=slope[1])) )
 
     is_tree = [travelmap.check(row, col) for row, col in coordinates_generator]
     n_trees = sum(is_tree)
