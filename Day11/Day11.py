@@ -118,7 +118,7 @@ n_occupations = total_occupations(seat_layout)
 print(f"First Steady occupations are {n_occupations}")
 
 # Part two: distance criteria and 5 as max occupancy
-
+# Result: 2227
 layouts = []
 seat_layout = deepcopy(original_seat_layout)
 layouts.append(seat_layout)
