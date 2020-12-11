@@ -14,7 +14,7 @@ from typing import List, Tuple, Dict
 sys.path.append("..")
 from utils import download_input
 
-INPUT_URL = "https://adventofcode.com/2020/day/4/input"
+INPUT_URL = "https://adventofcode.com/2020/day/5/input"
 INPUT_FILENAME = "input.txt"
 # INPUT_FILENAME = "example_invalid_passports.txt"
 cookie = {"session": os.environ["session"]}
