@@ -21,7 +21,7 @@ from utils import download_input
 INPUT_URL = "https://adventofcode.com/2020/day/10/input"
 INPUT_FILENAME = "input.txt"
 # INPUT_FILENAME = "example_input.txt"
-cookie = {"session": os.environ["session"]}
+
 
 def parse_input(filename: str) -> List:
     with open(filename, "r") as f:
@@ -39,13 +39,19 @@ def parse_input(filename: str) -> List:
 #
 # I solved this by hand until n=6 but thanks to reddit I found out
 # the function is Tribonacci
+#
+# The number of ways to sum n 1's without surpassing X seems to be
+# X-bonacci with initial cases
+# X-bonacci(0) = 1
+# X-bonacci(x) = x for x<X-1
+# X-bonacci(x) = Sum of X previous X-bonacci
 def count_arrangements(diffs: np.ndarray) -> int:
     @lru_cache(None)
     def inner_count(n: int) -> int:
+        if n == 0:
+            return 1
         if n <= 2:
             return n
-        elif n == 3:
-            return 4
         else:
             return inner_count(n-1) + inner_count(n-2) + inner_count(n-3)
 
@@ -59,6 +65,7 @@ def count_arrangements(diffs: np.ndarray) -> int:
 
 ####################################
 if not os.path.exists(INPUT_FILENAME):
+    cookie = {"session": os.environ["session"]}
     success = download_input(INPUT_URL, INPUT_FILENAME, cookie)
     if not success: # This should be handled better
         exit(-1)
