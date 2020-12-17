@@ -19,7 +19,7 @@ from utils import download_input
 INPUT_URL = "https://adventofcode.com/2020/day/11/input"
 INPUT_FILENAME = "input.txt"
 # INPUT_FILENAME = "example_input.txt"
-cookie = {"session": os.environ["session"]}
+
 
 EMPTY = "L"
 OCCUPIED = "#"
@@ -93,6 +93,7 @@ def iteration(seat_layout: Seat_Layout, distance: bool=False, max_occupied: int=
 
 ####################################
 if not os.path.exists(INPUT_FILENAME):
+    cookie = {"session": os.environ["session"]}
     success = download_input(INPUT_URL, INPUT_FILENAME, cookie)
     if not success: # This should be handled better
         exit(-1)
